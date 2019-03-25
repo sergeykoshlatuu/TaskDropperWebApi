@@ -18,6 +18,10 @@ namespace ItemWebApi.Services
             _taskItemRepository = taskItemRepository;
         }
 
+        public TaskItemContext GetContext()
+        {
+            return db;
+        }
 
         public IEnumerable<TaskItem> GetAllByEmail(string id)
         {

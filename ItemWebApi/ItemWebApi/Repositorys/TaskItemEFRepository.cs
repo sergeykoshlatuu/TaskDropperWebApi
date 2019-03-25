@@ -1,10 +1,13 @@
 ﻿using ItemWebApi.Interfaces;
+using ItemWebApi.Jwt;
 using ItemWebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Http;
 
 namespace ItemWebApi.Repositorys
 {
@@ -16,6 +19,8 @@ namespace ItemWebApi.Repositorys
         {
             this.db = context;
         }
+
+
 
         public IEnumerable<TaskItem> GetAllByEmail(string id)
         {
@@ -46,5 +51,9 @@ namespace ItemWebApi.Repositorys
                 db.TaskItems.Remove(task);
             db.SaveChanges();
         }
+
+       
     }
+
+    
 }

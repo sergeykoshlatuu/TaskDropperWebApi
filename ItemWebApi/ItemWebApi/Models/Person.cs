@@ -9,10 +9,9 @@ namespace ItemWebApi.Models
 {
     public class Person
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
         public int Id { get; set; }
         public string Email { get; set; }
         public string Token { get; set; }
+        public string ApiToken { get; set; }
     }
 }

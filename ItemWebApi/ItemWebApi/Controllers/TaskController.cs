@@ -13,7 +13,6 @@ namespace ItemWebApi.Controllers
     {
         ItemTaskService taskService;
        
-
         public TaskController(ITaskItemRepository<TaskItem> taskItemRepository)
         {
 
@@ -21,7 +20,9 @@ namespace ItemWebApi.Controllers
            
         }
 
+
         [JwtAuthentication]
+        [HttpGet]
         // GET api/task/5
         public IEnumerable<TaskItem> GetTaskItem(string id)
         {
