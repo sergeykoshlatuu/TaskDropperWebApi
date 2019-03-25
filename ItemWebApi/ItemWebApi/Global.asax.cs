@@ -15,7 +15,7 @@ namespace ItemWebApi
     {
         protected void Application_Start()
         {
-            //Database.SetInitializer(new TaskDbInitializer());
+           
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

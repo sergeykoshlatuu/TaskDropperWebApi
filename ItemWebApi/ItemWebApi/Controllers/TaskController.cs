@@ -3,31 +3,33 @@ using ItemWebApi.Models;
 using ItemWebApi.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using ItemWebApi.Jwt.Filters;
+
 
 namespace ItemWebApi.Controllers
 {
     public class TaskController : ApiController
     {
         ItemTaskService taskService;
+       
 
         public TaskController(ITaskItemRepository<TaskItem> taskItemRepository)
         {
+
             taskService = new ItemTaskService(taskItemRepository);
+           
         }
 
-        [HttpGet]
+        [JwtAuthentication]
         // GET api/task/5
         public IEnumerable<TaskItem> GetTaskItem(string id)
-
         {
-            var taskItem = taskService.GetAllByEmail(id);
-            return taskItem;
+                var taskItem = taskService.GetAllByEmail(id);
+                return taskItem;
         }
 
+        [JwtAuthentication]
         [HttpPost]
         // POST api/task
         public void CreateTask([FromBody]TaskItem taskItem)
@@ -36,6 +38,7 @@ namespace ItemWebApi.Controllers
             taskService.Save();
         }
 
+        [JwtAuthentication]
         [HttpPut]
         // PUT api/task/5
         public void UpdateTask(int id, [FromBody]TaskItem taskItem)
@@ -44,6 +47,7 @@ namespace ItemWebApi.Controllers
             taskService.Save();
         }
 
+        [JwtAuthentication]
         [HttpDelete]
         // DELETE api/task/5
         public void DeleteTask(int id)

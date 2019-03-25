@@ -17,8 +17,8 @@ namespace ItemWebApi
         {
             // Web API configuration and services
             var container = new UnityContainer();
-            //container.RegisterType<ITaskItemRepository<TaskItem>, TaskItemEFRepository>(new HierarchicalLifetimeManager());
-            container.RegisterType<ITaskItemRepository<TaskItem>, TaskDapperRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<ITaskItemRepository<TaskItem>, TaskItemEFRepository>(new HierarchicalLifetimeManager());
+            //container.RegisterType<ITaskItemRepository<TaskItem>, TaskDapperRepository>(new HierarchicalLifetimeManager());
 
             config.DependencyResolver = new UnityResolver(container);
 
