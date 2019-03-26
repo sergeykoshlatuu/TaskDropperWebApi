@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using ItemWebApi.Interfaces;
 using ItemWebApi.Jwt;
+using ItemWebApi.Jwt.Filters;
 using ItemWebApi.Models;
 using ItemWebApi.Services;
 using Microsoft.IdentityModel.Tokens;
@@ -16,52 +17,25 @@ namespace ItemWebApi.Controllers
 {
     public class TokenController : ApiController
     {
-        TaskItemContext db;
+        PeopleService peopleService;
 
-        public TokenController(ITaskItemRepository<TaskItem> taskItemRepository)
+        public TokenController(IPeopleRepositiry<Person> peopleRepositiry)
         {
-
-           var taskService = new ItemTaskService(taskItemRepository);
-            db = taskService.GetContext();
+            peopleService = new PeopleService(peopleRepositiry);
         }
 
         [AllowAnonymous]
         public string Get(string email, string token)
         {
-            if (CheckUserAsync(email, token))
-            {
-                List<Person> people = db.People.Where(x => x.Email == email).ToList();
-                return people[0].ApiToken;
-
-            }
-            throw new HttpResponseException(HttpStatusCode.Unauthorized);
-
+           return peopleService.Get(email, token);
         }
 
-        public string RefreshToken(string oldToken)
+        [JwtAuthentication]
+        [HttpGet]
+        public string RefreshToken(string oldToken,string email)
         {
-            List<Person> people = db.People.Where(x => x.Token == oldToken).ToList();
-            people[0].ApiToken= JwtManager.GenerateToken(oldToken);
-            return people[0].ApiToken;
+            return peopleService.RefreshToken(oldToken,email);
         }
-
-        public bool CheckUserAsync(string email, string token)
-        {
-            if (email == null || token == null || email == "") return false;
-
-            List<Person> people = db.People.Where(x => x.Email == email).ToList();
-            if (people.Count != 0) return true;
-            Person person = new Person();
-            person.Email = email;
-            person.Token = token;
-            person.ApiToken=JwtManager.GenerateToken(email);
-            db.People.Add(person);
-
-            db.SaveChanges();
-            return true;
-
-        }
-
 
     }
 }

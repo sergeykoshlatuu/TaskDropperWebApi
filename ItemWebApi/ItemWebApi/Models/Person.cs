@@ -13,5 +13,6 @@ namespace ItemWebApi.Models
         public string Email { get; set; }
         public string Token { get; set; }
         public string ApiToken { get; set; }
+        public DateTime TokenLifeTime { get; set; }
     }
 }

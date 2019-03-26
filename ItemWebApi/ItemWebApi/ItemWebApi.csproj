@@ -203,6 +203,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IPeopleRepositiry.cs" />
     <Compile Include="Interfaces\ITaskEFRepository.cs" />
     <Compile Include="Jwt\Filters\AddChallengeOnUnauthorizedResult.cs" />
     <Compile Include="Jwt\Filters\AuthenticationFailureResult.cs" />
@@ -213,15 +214,21 @@
     <Compile Include="Migrations\201903251208033_tokenapi.Designer.cs">
       <DependentUpon>201903251208033_tokenapi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903260842043_lifetime.cs" />
+    <Compile Include="Migrations\201903260842043_lifetime.Designer.cs">
+      <DependentUpon>201903260842043_lifetime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\TaskItemContext.cs" />
     <Compile Include="Models\TaskItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorys\PeopleRepository.cs" />
     <Compile Include="Repositorys\TaskDapperRepository.cs" />
     <Compile Include="Repositorys\TaskItemEFRepository.cs" />
     <Compile Include="Resolver\UnityResolver.cs" />
     <Compile Include="Services\ItemTaskService.cs" />
+    <Compile Include="Services\PeopleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -309,6 +316,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903251208033_tokenapi.resx">
       <DependentUpon>201903251208033_tokenapi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903260842043_lifetime.resx">
+      <DependentUpon>201903260842043_lifetime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
