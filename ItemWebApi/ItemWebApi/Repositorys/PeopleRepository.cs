@@ -29,6 +29,7 @@ namespace ItemWebApi.Repositorys
                 {
                     people[0].ApiToken = JwtManager.GenerateToken(email);
                     people[0].TokenLifeTime = DateTime.Now.AddMinutes(20);
+                    db.SaveChanges();
                 }
                 return people[0].ApiToken;
             }
@@ -51,6 +52,7 @@ namespace ItemWebApi.Repositorys
             {
                 people[0].ApiToken = JwtManager.GenerateToken(email);
                 people[0].TokenLifeTime = DateTime.Now.AddMinutes(20);
+                db.SaveChanges();
                 return people[0].ApiToken;
             }
             return oldToken;

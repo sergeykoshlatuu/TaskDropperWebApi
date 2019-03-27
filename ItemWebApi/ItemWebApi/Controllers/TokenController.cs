@@ -30,12 +30,14 @@ namespace ItemWebApi.Controllers
            return peopleService.Get(email, token);
         }
 
-        [JwtAuthentication]
+        //[JwtAuthentication]
         [HttpGet]
         public string RefreshToken(string oldToken,string email)
         {
             return peopleService.RefreshToken(oldToken,email);
         }
+
+       
 
     }
 }
